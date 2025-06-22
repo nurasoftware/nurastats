@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * NuraStats - Open source and privacy-friendly web analytics.
+ * https://nurastats.com
+ *
+ * Copyright (c) Chimilevschi Iosif Gabriel
+ * LICENSE:
+ * Permissions of this strongest copyleft license are conditioned on making available complete source code 
+ * of licensed works and modifications, which include larger works using a licensed work, under the same license. 
+ * Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. 
+ * When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+ *    
+ * @copyright   Copyright (c) Chimilevschi Iosif Gabriel
+ * @license     https://opensource.org/license/agpl-v3  AGPL-3.0 License.
+ * @author      Chimilevschi Iosif Gabriel <office@nurasoftware.com>
+ */
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -11,7 +27,6 @@ use App\Models\Site;
 use App\Models\LogSession;
 use App\Models\LogVisitor;
 use App\Models\LogPage;
-use App\Models\Event;
 use App\Models\Helpers;
 use Browser;
 use \PulkitJalan\IPGeolocation\IPGeolocation as GeoIP;
@@ -21,7 +36,7 @@ class AnalyticsController extends Controller
 
     public function analytic(Request $request)
     {
-    
+
         $ip = $request->ip();
         $json_data = $request->getContent();
         $data = json_decode(($json_data));
@@ -95,9 +110,9 @@ class AnalyticsController extends Controller
             $js_referrer = $request->headers->get('referer');
             $js_referrer_host = Helpers::get_host($js_referrer);
 
-            
-            if(! Helpers::check_source_destination_host($js_referrer_host, $site->url, $allow_subdomains = $site->allow_subdomains)) {
-                Log::info('Source & destination FAILED for '.$data->site.'. Site url: '.$site->url.'. JavaScript referrer host: '.$js_referrer_host);
+
+            if (! Helpers::check_source_destination_host($js_referrer_host, $site->url, $allow_subdomains = $site->allow_subdomains)) {
+                Log::info('Source & destination FAILED for ' . $data->site . '. Site url: ' . $site->url . '. JavaScript referrer host: ' . $js_referrer_host);
                 return;
             }
 
@@ -227,43 +242,7 @@ class AnalyticsController extends Controller
     }
 
 
-    public function track_event(Request $request)
-    {
-        $json_data = $request->getContent();
-        $data = json_decode(($json_data));
-
-        if (! ($data->site ?? null)) return;
-        if (! ($data->event_id ?? null)) return;
-        if (! ($data->tracking_id ?? null)) return;
-
-        $site = Site::where('code', $data->site ?? null)->first();
-        if (! $site) return;
-
-        // check if request come from this valid site
-        // check if site exists and is verified
-        // TODO ...................
-        // check if site exists and is verified
-
-        /*
-        if ($data->event_id == 'notFound') {
-            // track 404/Error pages
-            $urlPath = $data->urlPathErrorPage;
-            ErrorPage::create(['site_id' => $site->id, 'path' => $urlPath]);            
-
-            $session = LogSession::where('hash', $data->tracking_id)->first();
-            $session->update(['is_404' => 1]);            
-
-            $counter = ErrorPage::where(['site_id' => $site->id, 'path' => $urlPath])->count();
-            ErrorPage::where(['site_id' => $site->id, 'path' => $urlPath])->update(['counter' => $counter]);
-
-        } else {            
-         */
-        $event = Event::where('code', $data->event_id)->where('active', 1)->first();
-        if ($event) LogSession::where('hash', $data->tracking_id)->update(['event_id' => $event->id]);
-
-
-        return;
-    }
+    
 
     /**
      * Anonymizes an IP/IPv6.

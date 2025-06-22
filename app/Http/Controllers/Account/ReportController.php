@@ -1,6 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\User;
+/**
+ * NuraStats - Open source and privacy-friendly web analytics.
+ * https://nurastats.com
+ *
+ * Copyright (c) Chimilevschi Iosif Gabriel
+ * LICENSE:
+ * Permissions of this strongest copyleft license are conditioned on making available complete source code 
+ * of licensed works and modifications, which include larger works using a licensed work, under the same license. 
+ * Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. 
+ * When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+ *    
+ * @copyright   Copyright (c) Chimilevschi Iosif Gabriel
+ * @license     https://opensource.org/license/agpl-v3  AGPL-3.0 License.
+ * @author      Chimilevschi Iosif Gabriel <office@nurasoftware.com>
+ */
+
+namespace App\Http\Controllers\Account;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -88,7 +104,7 @@ class ReportController extends Controller
         $devices = array_values($devices_temp2);
         array_multisort(array_column($devices, 'counter'), SORT_DESC, $devices);
 
-       
+
 
         // REFERRERS
         $referrers_temp = [];
@@ -103,7 +119,7 @@ class ReportController extends Controller
                 foreach ($row_array as $row) {
                     $host = $row->host;
                     if (!isset($referrers_temp2[$host])) {
-                        $referrers_temp2[$host]['host'] = $host;                        
+                        $referrers_temp2[$host]['host'] = $host;
                         $referrers_temp2[$host]['counter'] = 0;
                     }
                     $referrers_temp2[$host]['counter'] += $row->counter;
@@ -129,9 +145,9 @@ class ReportController extends Controller
                     $title = $row->title;
                     $page_hash = $row->page_hash;
                     if (!isset($top_pages_temp2[$url])) {
-                        $top_pages_temp2[$url]['url'] = $url;                        
-                        $top_pages_temp2[$url]['title'] = $title;                        
-                        $top_pages_temp2[$url]['page_hash'] = $page_hash;                        
+                        $top_pages_temp2[$url]['url'] = $url;
+                        $top_pages_temp2[$url]['title'] = $title;
+                        $top_pages_temp2[$url]['page_hash'] = $page_hash;
                         $top_pages_temp2[$url]['counter'] = 0;
                     }
                     $top_pages_temp2[$url]['counter'] += $row->counter;
@@ -142,7 +158,7 @@ class ReportController extends Controller
         array_multisort(array_column($top_pages, 'counter'), SORT_DESC, $top_pages);
 
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.reports',
             'active_menu' => 'reports',
             'site' => $site,

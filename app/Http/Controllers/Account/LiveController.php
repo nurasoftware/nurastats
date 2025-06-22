@@ -60,7 +60,7 @@ class LiveController extends BarChart
 
         //dd($builder);
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.live',
             'active_menu' => 'live',
             'site' => $site,

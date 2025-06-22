@@ -98,9 +98,9 @@
 
                         <td width="200">
                             <div class="d-grid gap-2">
-                                <a href="{{ route('user.site.config', ['code' => $site->code]) }}" class="btn btn-primary btn-sm"><i class="bi bi-gear"></i> {{ __('Settings') }}</a>
+                                <a href="{{ route('site.config', ['code' => $site->code]) }}" class="btn btn-primary btn-sm"><i class="bi bi-gear"></i> {{ __('Settings') }}</a>
 
-                                <a href="{{ route('user.site.show', ['code' => $site->code]) }}" class="btn btn-primary btn-sm mt-2"><i class="bi bi-graph-up-arrow"></i> {{ __('Dashboard') }}</a>
+                                <a href="{{ route('site.show', ['code' => $site->code]) }}" class="btn btn-primary btn-sm mt-2"><i class="bi bi-graph-up-arrow"></i> {{ __('Dashboard') }}</a>
                             </div>
                         </td>
                     </tr>

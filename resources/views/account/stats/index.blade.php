@@ -30,14 +30,14 @@
 --}}
 
 <div class="float-end ms-2">
-    <a class="btn btn-light btn-sm btn-gear text-white" href="{{ route('user.site.show', ['code' => $site->code]) }}"><i class="bi bi-arrow-repeat"></i> {{ __('Reload') }}</a>
-    <a class="btn btn-light btn-sm btn-gear text-white ms-2" href="{{ route('user.site.config', ['code' => $site->code]) }}"><i class="bi bi-gear"></i> {{ __('Settings') }}</a>
+    <a class="btn btn-light btn-sm btn-gear text-white" href="{{ route('site.show', ['code' => $site->code]) }}"><i class="bi bi-arrow-repeat"></i> {{ __('Reload') }}</a>
+    <a class="btn btn-light btn-sm btn-gear text-white ms-2" href="{{ route('site.config', ['code' => $site->code]) }}"><i class="bi bi-gear"></i> {{ __('Settings') }}</a>
 </div>
 
 <div class="page-title">
     <nav aria-label="breadcrumb" class="breadcrumb-header">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('user.sites.index') }}">{{ __('Websites') }}</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('sites.index') }}">{{ __('Websites') }}</a></li>
             <li class="breadcrumb-item active">{{ $site->label }}</li>
         </ol>
     </nav>
@@ -52,7 +52,7 @@
             <div class="text-dark text-uppercase mb-1 fw-bold">{{ __('Today') }}</div>
             <div class="text-muted mb-2 small">{{ date('d M Y', strtotime(date('Y-m-d'))) }}</div>
             <div class="mb-3 text-secondary fs-6 fw-bold">{{ $stats_today_visitors ?? '-' }} {{ __('visitors') }} <i class="bi bi-dot"></i> {{ $stats_today_views ?? '-' }} {{ __('views') }}</div>
-            <a class="btn btn-light" href="{{ route('user.site.reports', ['code' => $site->code, 'range' => $date_today . '_' . $date_today]) }}">{{ __('View report') }}</a>
+            <a class="btn btn-light" href="{{ route('site.reports', ['code' => $site->code, 'range' => $date_today . '_' . $date_today]) }}">{{ __('View report') }}</a>
 
         </div>
     </div>
@@ -63,7 +63,7 @@
             <div class="text-dark text-uppercase mb-1 fw-bold">{{ __('Yesterday') }}</div>
             <div class="text-muted mb-2 small">{{ date('d M Y', strtotime('-1 days')) }}</div>
             <div class="mb-3 text-secondary fs-6 fw-bold">{{ $stats_yesterday_visitors ?? '-' }} {{ __('visitors') }} <i class="bi bi-dot"></i> {{ $stats_yesterday_views ?? '-' }} {{ __('views') }}</div>
-            <a class="btn btn-light" href="{{ route('user.site.reports', ['code' => $site->code, 'range' => $date_yesterday . '_' . $date_yesterday]) }}">{{ __('View report') }}</a>
+            <a class="btn btn-light" href="{{ route('site.reports', ['code' => $site->code, 'range' => $date_yesterday . '_' . $date_yesterday]) }}">{{ __('View report') }}</a>
 
         </div>
     </div>
@@ -75,7 +75,7 @@
             <div class="text-muted mb-2 small">{{ date('d M Y', strtotime('-7 days')) }} - {{ date('d M Y', strtotime('-1 days')) }}</div>
             <div class="mb-3 text-secondary fs-6 fw-bold">{{ $stats_last_7_days_visitors ?? '-' }} {{ __('visitors') }} <i class="bi bi-dot"></i> {{ $stats_last_7_days_views ?? '-' }} {{ __('views') }}</div>
             <a class="btn btn-light"
-                href="{{ route('user.site.reports', ['code' => $site->code, 'range' => date('Y-m-d', strtotime('-7 days')) . '_' . date('Y-m-d', strtotime('-1 days'))]) }}">{{ __('View report') }}</a>
+                href="{{ route('site.reports', ['code' => $site->code, 'range' => date('Y-m-d', strtotime('-7 days')) . '_' . date('Y-m-d', strtotime('-1 days'))]) }}">{{ __('View report') }}</a>
         </div>
     </div>
 
@@ -87,7 +87,7 @@
             <div class="text-muted mb-2 small">{{ date('d M Y', strtotime('-30 days')) }} - {{ date('d M Y', strtotime('-1 days')) }}</div>
             <div class="mb-3 text-secondary fs-6 fw-bold">{{ $stats_last_30_days_visitors ?? '-' }} {{ __('visitors') }} <i class="bi bi-dot"></i> {{ $stats_last_30_days_views ?? '-' }} {{ __('views') }}</div>
             <a class="btn btn-light"
-                href="{{ route('user.site.reports', ['code' => $site->code, 'range' => date('Y-m-d', strtotime('-30 days')) . '_' . date('Y-m-d', strtotime('-1 days'))]) }}">{{ __('View report') }}</a>
+                href="{{ route('site.reports', ['code' => $site->code, 'range' => date('Y-m-d', strtotime('-30 days')) . '_' . date('Y-m-d', strtotime('-1 days'))]) }}">{{ __('View report') }}</a>
         </div>
     </div>
 

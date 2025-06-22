@@ -3,8 +3,8 @@
         <div class="col-12">
             <nav aria-label="breadcrumb" class="breadcrumb-header">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('user.sites.index') }}">{{ __('Websites') }}</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('user.site.show', ['code' => $site->code]) }}">{{ $site->label }}</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('sites.index') }}">{{ __('Websites') }}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('site.show', ['code' => $site->code]) }}">{{ $site->label }}</a></li>
                     <li class="breadcrumb-item active">{{ __('Visitors') }}</li>
                 </ol>
             </nav>

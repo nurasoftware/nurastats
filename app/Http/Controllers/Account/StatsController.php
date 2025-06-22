@@ -1,6 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\User;
+/**
+ * NuraStats - Open source and privacy-friendly web analytics.
+ * https://nurastats.com
+ *
+ * Copyright (c) Chimilevschi Iosif Gabriel
+ * LICENSE:
+ * Permissions of this strongest copyleft license are conditioned on making available complete source code 
+ * of licensed works and modifications, which include larger works using a licensed work, under the same license. 
+ * Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. 
+ * When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
+ *    
+ * @copyright   Copyright (c) Chimilevschi Iosif Gabriel
+ * @license     https://opensource.org/license/agpl-v3  AGPL-3.0 License.
+ * @author      Chimilevschi Iosif Gabriel <office@nurasoftware.com>
+ */
+
+namespace App\Http\Controllers\Account;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +30,7 @@ use Auth;
 use DB;
 use Illuminate\Support\Carbon;
 
-class StatsController extends Controller 
+class StatsController extends Controller
 {
 
     public function __construct(Request $request) {}
@@ -57,7 +73,7 @@ class StatsController extends Controller
         $chart_date_start = date('Y-m-d', strtotime("-14 days"));
         $stats_traffic = StatsRecent::where('site_id', $site->id)->where('day', '>=', $chart_date_start)->where('day', '<', date('Y-m-d'))->get();
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.index',
             //'active_menu' => 'site_' . $site->code,            
             //'active_submenu' => 'dashboard',
@@ -146,7 +162,7 @@ class StatsController extends Controller
 
         $pages = LogSession::with('page')->where('site_id', $site->id)->orderByDesc('id')->paginate(25);
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.pages',
             //'active_menu' => 'site_' . $site->code,
             //'active_submenu' => 'pages',
@@ -196,7 +212,7 @@ class StatsController extends Controller
 
         $visitors = LogVisitor::withCount('sessions')->where('site_id', $site->id)->orderByDesc('id')->paginate(25);
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.visitors',
             //'active_menu' => 'site_' . $site->code,
             //'active_submenu' => 'visitors',
@@ -230,7 +246,7 @@ class StatsController extends Controller
 
         $sessions = LogSession::with('visitor')->where(['site_id' => $site->id, 'page_id' => $page->id])->orderByDesc('id')->paginate(25);
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.page-stats',
             //'active_menu' => 'site_' . $site->code,
             //'active_submenu' => 'pages',
@@ -276,7 +292,7 @@ class StatsController extends Controller
             //DB::raw("SELECT COUNT('id') DATE_FORMAT(NOW(), '%H:%i') as cnt1"),
             //DB::raw("COUNT(id) WHERE site_id = 5 as cnt1"),
             DB::raw('FLOOR(1+rand()*10) AS `cnt 1`'),
-            
+
         )
             //->groupBy(DB::raw("DATE(created_at)"))
             ->groupBy("created_at")
@@ -286,7 +302,7 @@ class StatsController extends Controller
 
         //dd($builder);
 
-        return view('user.index', [
+        return view('account.index', [
             'view_file' => 'stats.live2',
             'active_menu' => 'live',
             'site' => $site,

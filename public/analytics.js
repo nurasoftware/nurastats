@@ -2,9 +2,8 @@ var ns_domain = window.location.hostname.replace("www.", "");
 var userAgent = navigator.userAgent;
 var referrer = window.frames.top.document.referrer;
 var title = document.title;
-var event_id = null;
 var tracking_id = crypto.randomUUID();
-var serverURL = "https://analytics.clevada.com";
+var serverURL = window.location.hostname;
 var screenHeight = window.screen.height;
 var screenWidth = window.screen.width;
 
@@ -20,7 +19,6 @@ function sendAnalyticEvent(id, scroll_percent) {
     let data = {
         "site": ns_site,
         "tracking_id": id,
-        "event_id" : event_id,
         "scroll_percent": scroll_percent,
         "domain": ns_domain,
         "page": window.location.pathname,
@@ -56,26 +54,6 @@ function sendTimeEvent(id, seconds_min) {
         body: JSON.stringify(data),
         keepalive: true,
     });        
-}
-
-function sendTrackEvent(id, event_id) {    
-    let data = {
-        "site": ns_site,
-        "tracking_id": id,
-        "event_id": event_id,
-    };
-    fetch(`${serverURL}/track-event`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        keepalive: true,
-    });        
-}
-
-function clevadaTrackEvent(event_id) {
-    sendTrackEvent(tracking_id, event_id);    
 }
 
 function startTracking() {

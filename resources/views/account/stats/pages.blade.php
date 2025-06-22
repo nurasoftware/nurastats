@@ -3,8 +3,8 @@
         <div class="col-12">
             <nav aria-label="breadcrumb" class="breadcrumb-header">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('user.sites.index') }}">{{ __('Websites') }}</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('user.site.show', ['code' => $site->code]) }}">{{ $site->label }}</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a href="{{ route('sites.index') }}">{{ __('Websites') }}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ route('site.show', ['code' => $site->code]) }}">{{ $site->label }}</a></li>
                     <li class="breadcrumb-item active">{{ __('Pages') }}</li>
                 </ol>
             </nav>
@@ -18,7 +18,7 @@
 
         <div class="card">
 
-            @include('user.stats.includes.menu-pages')
+            @include('account.stats.includes.menu-pages')
 
             <div class="card-body">
 
@@ -142,7 +142,7 @@
                                 </th>
 
                                 <th>
-                                    <i class="bi bi-graph-up"></i> <a href="{{ route('user.site.page_stats', ['code' => $site->code, 'hash' => $page->page->hash]) }}">{{ __('Page history') }}</a>
+                                    <i class="bi bi-graph-up"></i> <a href="{{ route('site.page_stats', ['code' => $site->code, 'hash' => $page->page->hash]) }}">{{ __('Page history') }}</a>
                                 </th>
 
                             </tr>

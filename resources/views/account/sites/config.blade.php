@@ -75,7 +75,7 @@
 
 
                 <div class="fw-bold fs-5">{{ __('Analytics code') }}</div>
-                <textarea class="form-control"><script async src="{{ config('app.cdn') }}/analytics.js" data-site="{{ $site->code }}"></script></textarea>
+                <textarea class="form-control"><script async src="{{ config('nurastats.analytics_js_url') }}/analytics.js" data-site="{{ $site->code }}"></script></textarea>
                 <button id="buttonCopy" class="btn btn-sm btn-secondary mt-2">{{ __('Copy code') }}</button>
                 <div id="copied" class="text-success mt-2 fw-bold d-none">{{ __('Analytics code copied. You can paste it in your website') }}</div>
                 <script>
