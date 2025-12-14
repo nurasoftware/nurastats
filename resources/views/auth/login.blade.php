@@ -12,26 +12,23 @@
 
 <body class="bg-light">
 
-    <div class="container mt-5">
+    <div class="container">
 
-        @if ($message = Session::get('error'))
-            <div class="alert alert-danger">
-                @if ($message == 'login_required')
-                    {{ __('Login is required') }}. {{ __('Please login') }} {{ __('or') }} <a href="{{ route('register') }}"><b>{{ __('register new account') }}</b></a>.
-                @endif
+        <div class="row py-4 mt-2 align-items-center">
+
+            <div class="text-center mb-3 mt-3">
+                <img src="{{ asset('assets/img/logo-auth.png') }}" class="img-fluid" alt="{{ config('app.name') }}">
             </div>
-        @endif
 
-        <div class="row py-5 mt-5 align-items-center">
+            <div class="col-md-6 offset-md-3 bg-white rounded">
 
-            <div class="col-md-6 offset-md-3">
-
-                <div class="text-center mb-3 mt-3">
-                    <img src="{{ asset('assets/img/clevada.png') }}" class="img-fluid" alt="{{ config('app.name') }}">
-                    <hr>
-                </div>
-
-                <div class='fs-5 mb-3'>{{ __('Login into your account') }}</div>
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        @if ($message == 'login_required')
+                            {{ __('Login is required') }}. {{ __('Please login') }} {{ __('or') }} <a href="{{ route('register') }}"><b>{{ __('register new account') }}</b></a>.
+                        @endif
+                    </div>
+                @endif
 
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -39,16 +36,21 @@
                     </div>
                 @endif
 
+                <div class="text-center mb-3 mt-3">
+                    <div class='fs-5 fw-bold mb-2 mt-3'>{{ __('Login into your account') }}</div>
+                </div>
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="row">
 
                         <!-- Email Address -->
-                        <div class="input-group col-12 mb-4">
+                        <label class="fw-bold mb-1">{{ __('Your email') }}</label>
+                        <div class="input-group col-12 mb-3">
                             <div class="input-group mb-1">
                                 <span class="input-group-text" id="addonEmail"><i class="bi bi-envelope"></i></span>
-                                <input type="email" name="email" class="form-control form-control-lg" placeholder="{{ __('Owner email') }}" aria-label="{{ __('Owner email') }}" aria-describedby="addonEmail"
+                                <input type="email" name="email" class="form-control form-control-lg" placeholder="{{ __('Email address') }}" aria-label="{{ __('Email address') }}" aria-describedby="addonEmail"
                                     @error('email') is-invalid @enderror required autocomplete="email">
                             </div>
 
@@ -60,7 +62,8 @@
                         </div>
 
                         <!-- Password -->
-                        <div class="input-group col-12 mb-4">
+                        <label class="fw-bold mb-1">{{ __('Password') }}</label>
+                        <div class="input-group col-12 mb-3">
                             <div class="input-group mb-1">
                                 <span class="input-group-text" id="addonPw"><i class="bi bi-lock"></i></span>
                                 <input type="password" name="password" class="form-control form-control-lg" placeholder="{{ __('Password') }}" aria-label="{{ __('Password') }}" aria-describedby="addonPw"
@@ -74,7 +77,7 @@
                             @enderror
                         </div>
 
-                        <div class="input-group col-12 mb-4">
+                        <div class="input-group col-12 mb-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} checked>
 
@@ -85,28 +88,23 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="form-group col-lg-12 mx-auto mb-0">
+                        <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-block py-2">
                                 <span class="font-weight-bold">{{ __('Login') }}</span>
                             </button>
                         </div>
 
                         <!-- Divider Text -->
-                        <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                            <div class="border-bottom w-100 ml-5"></div>
+                        <div class="form-group col-lg-12 mx-auto d-flex align-items-center mt-3 mb-2">
+                            <div class="border-bottom w-100 "></div>
                             <span class="px-2 small text-muted font-weight-bold text-muted">{{ __('OR') }}</span>
-                            <div class="border-bottom w-100 mr-5"></div>
+                            <div class="border-bottom w-100 "></div>
                         </div>
 
-
                         <!-- Already Registered -->
-                        <div class="text-center w-100">
+                        <div class="text-center">
                             @if (Route::has('password.request'))
                                 <p class="text-muted font-weight-bold"><a href="{{ route('password.request') }}" class="text-primary ml-2">{{ __('Forgot password') }}</a></p>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <p class="text-muted font-weight-bold">{{ __('New on website?') }} <a href="{{ route('register') }}" class="text-primary ml-2">{{ __('Register an account') }}</a></p>
                             @endif
                         </div>
 
@@ -114,7 +112,11 @@
 
                 </form>
             </div>
+
         </div>
+
+        @include('auth.includes.copyright')
+
     </div>
 
 </body>

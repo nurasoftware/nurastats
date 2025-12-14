@@ -42,7 +42,7 @@
                         {{ __('Sorry, an error has occured, Requested page not found!') }}
                     </div>
                     <div class="error-actions">
-                        <a href="{{ route('home') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>{{ __('Go to homepage') }} </a>
+                        <a href="{{ route('admin') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>{{ __('Go to homepage') }} </a>
                     </div>
                 </div>
             </div>

@@ -9,9 +9,6 @@ use App\Http\Controllers\Account\StatsController as StatsController;
 use App\Http\Controllers\Account\ReportController as ReportController;
 use App\Http\Controllers\Account\EventController as EventController;
 use App\Http\Controllers\Account\HealthController as HealthController;
-use App\Http\Controllers\LogoutController as LogoutController;
-
-Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('account', [SiteController::class, 'index'])->name('user');
 

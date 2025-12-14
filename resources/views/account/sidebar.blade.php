@@ -2,6 +2,18 @@
 <div id="sidebar" class="active">
     <div class="sidebar-wrapper active">
 
+        <div class="sidebar-header">
+            <div class="d-flex justify-content-between">
+                <div class="logo">
+                    <img src="{{ asset('assets//img/logo-backend.png') }}" class="img-fluid" alt="{{ config('app.name') }}">
+                </div>
+                <div class="toggler">
+                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle fs-3 text-white"></i></a>
+                </div>
+            </div>
+        </div>
+
+
         <div class="sidebar-menu">
             <ul class="menu">
 
@@ -11,7 +23,7 @@
                         <span>{{ __('Manage Websites') }}</span>
                     </a>
                 </li>
-                
+
                 @include('account.sidebar-sites')
 
                 @if ($site ?? null)
@@ -28,7 +40,7 @@
                             <span>{{ __('Reports') }}</span>
                         </a>
                     </li>
-                    
+
                     <li class="sidebar-item @if (($active_menu ?? null) == 'visitors') active @endif">
                         <a href="{{ route('site.visitors', ['code' => $site->code]) }}" class='sidebar-link'>
                             <i class="bi bi-person-workspace"></i>
@@ -41,7 +53,7 @@
                             <i class="bi bi-file-text"></i>
                             <span>{{ __('Pages') }}</span>
                         </a>
-                    </li>                                       
+                    </li>
                 @endif
 
             </ul>

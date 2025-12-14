@@ -16,18 +16,16 @@
 
 <body class="bg-light">
 
-    <div class="container mt-5">
+    <div class="container">
 
+        <div class="row py-4 mt-2 align-items-center">
 
-        <div class="row py-5 mt-5 align-items-center">
+            <div class="text-center mb-3 mt-3">
+                <img src="{{ asset('assets/img/logo-auth.png') }}" class="img-fluid" alt="{{ config('app.name') }}">
+            </div>
 
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-6 offset-md-3 bg-white rounded">
 
-                <div class="text-center mb-4">
-                    <img src="{{ asset('assets/img/clevada.png') }}" class="img-fluid" alt="{{ config('app.name') }}">
-                    <hr>
-                </div>
-                
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -38,7 +36,9 @@
                     </div>
                 @endif
 
-                <div class='fs-5 mb-3'>{{ __('Reset password') }}</div>
+                <div class="text-center mb-3 mt-3">
+                    <div class='fs-5 fw-bold mb-2 mt-3'>{{ __('Reset password') }}</div>
+                </div>
 
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -49,9 +49,10 @@
                 <form method="POST">
                     @csrf
 
+                    <label class="fw-bold mb-1">{{ __('Your email') }}</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text login-field" id="addonEmail"><i class="bi bi-envelope"></i></span>
-                        <input type="email" name="email" class="form-control form-control-lg login-field" placeholder="{{ __('Email') }}" aria-label="{{ __('Email') }}" aria-describedby="addonEmail"
+                        <input type="email" name="email" class="form-control form-control-lg login-field" placeholder="{{ __('Email address') }}" aria-label="{{ __('Email address') }}" aria-describedby="addonEmail"
                             @error('email') is-invalid @enderror required autocomplete="email">
                     </div>
 
@@ -61,18 +62,28 @@
                         </span>
                     @enderror
 
-                    <button type="submit" class="btn btn-primary">{{ __('Reset password') }}</button>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">{{ __('Reset password') }}</button>
+                    </div>
 
-                    <hr>
+                    <!-- Divider Text -->
+                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center mt-3 mb-2">
+                        <div class="border-bottom w-100 "></div>
+                        <span class="px-2 small text-muted font-weight-bold text-muted">{{ __('OR') }}</span>
+                        <div class="border-bottom w-100 "></div>
+                    </div>
+
                     <!-- Already Registered -->
                     <div class="text-center w-100">
-                        <p class="text-muted fw-bold">{{ __('Already registered?') }} <a href="{{ route('login') }}" class="text-primary ml-2">{{ __('Login') }}</a></p>
+                        <p class="text-muted">{{ __('Already registered?') }} <a href="{{ route('login') }}" class="text-primary ml-2">{{ __('Login') }}</a></p>
                     </div>
                 </form>
 
             </div>
 
         </div>
+
+        @include('auth.includes.copyright')
 
     </div>
 </body>

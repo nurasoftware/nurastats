@@ -89,25 +89,6 @@ class FortifyServiceProvider extends ServiceProvider
             \Laravel\Fortify\Contracts\RegisterResponse::class,
             \App\Http\Auth\RegisterResponse::class
         );
-
-
-        // register new LoginResponse
-        $this->app->singleton(
-            \Laravel\Fortify\Contracts\LoginResponse::class,
-            \App\Http\Auth\LoginResponse::class
-        );
-
-        // register new LogoutResponse
-        $this->app->singleton(
-            \Laravel\Fortify\Contracts\LogoutResponse::class,
-            \App\Http\Auth\LogoutResponse::class
-        );
-
-
-        // register new TwofactorLoginResponse
-        $this->app->singleton(
-            \Laravel\Fortify\Contracts\TwoFactorLoginResponse::class,
-            \App\Http\Auth\LoginResponse::class
-        );
+       
     }
 }
