@@ -10,20 +10,22 @@
     ],
     "license": "AGPL-3.0",
     "homepage": "https://nurastats.com",
-    "author": "Gabriel Chimilevschi - NuraSoftware.com",
+    "authors": [
+        {
+            "name": "Chimilevschi Iosif Gabriel",
+            "email": "office@nurasoftware.com"
+        }
+    ],
     "require": {
         "php": "^8.4",
         "hisorange/browser-detect": "^5.0",
-        "laravel/fortify": "^1.26",
+        "laravel/fortify": "^1.32",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10",
-        "league/flysystem-aws-s3-v3": "^3.0",
-        "livewire/livewire": "^3.6",
-        "nesbot/carbon": "^3.8",
-        "opcodesio/log-viewer": "^3.17",
+        "livewire/livewire": "^3.7",        
         "pulkitjalan/ip-geolocation": "^8.1"
     },
     "require-dev": {
+        "opcodesio/log-viewer": "^3.21",
         "fakerphp/faker": "^1.24",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",

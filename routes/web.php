@@ -15,7 +15,7 @@ Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('account', [SiteController::class, 'index'])->name('user');
 
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth')->name('admin');
+Route::get('/', [SiteController::class, 'index'])->middleware('auth')->name('admin');
 
 Route::prefix('account')->group(function () {
 
