@@ -1,4 +1,6 @@
-# NuraStats
+<p align="center"><img width="316" height="57" alt="logo-auth" src="https://github.com/user-attachments/assets/64720486-9456-47ae-97ef-943080076fcb" /></p>
+
+# NuraStats Analytics
 
 **[NuraStats Analytics](https://nurastats.com) is an open source, privacy-friendly and lightweight web analytics alternative to Google Analytics.**
 
